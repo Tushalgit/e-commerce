@@ -4,6 +4,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import MenuIcon from '@mui/icons-material/Menu';
 import CancelIcon from '@mui/icons-material/Cancel';
 import { useEffect, useState } from "react";
+import { Usecart } from "../Context/CartContext";
 
 function Navbar() {
 
@@ -12,6 +13,8 @@ function Navbar() {
     const handlenav = () => {
         setNav((prev) => !prev)
     }
+
+    const { cart } = Usecart()
 
     return (
         <>
@@ -37,7 +40,7 @@ function Navbar() {
                 }>Contect</NavLink></li>
                 <li>
                     <NavLink to="/cart">
-                        <Badge color="secondary" badgeContent={99} className="text-blue-600 cursor-pointer">
+                        <Badge color="secondary" badgeContent={cart.length && cart.length} className="text-blue-600 cursor-pointer">
                             <ShoppingCartIcon />
                         </Badge>
                     </NavLink>

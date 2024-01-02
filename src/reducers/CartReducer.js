@@ -1,23 +1,113 @@
 function CartReducer(state, action) {
 
-    switch (action.type) {
-        case "ADD_TO_CART":
-            let { id, amount, product } = action.payload
+    if (action.type === "ADD_TO_CART") {
+        let { id, amount, product } = action.payload
+
+        let existingpro = state.cart.find((curElem) => curElem.id === id)
+
+        if (existingpro) {
+            let updatedpro = state.cart.map((curElem) => {
+                if (curElem.id === id) {
+                    let totalamount = curElem.amount + amount
+                    if (totalamount >= curElem.max) {
+                        totalamount = curElem.max
+                    }
+                    return {
+                        ...curElem,
+                        amount: totalamount
+                    }
+                }
+                else {
+                    return curElem
+                }
+            });
+            return {
+                ...state,
+                cart: updatedpro
+            }
+        }
+        else {
             let cartproduct;
             cartproduct = {
                 id: id,
                 name: product.name,
-                price:product.price,
+                price: product.price,
                 amount: amount,
                 image: product.image[0].url,
                 max: product.stock
             }
             return {
                 ...state,
-                cart: [...state.cart,cartproduct]
+                cart: [...state.cart, cartproduct]
             }
+        }
 
-        default: return state
+
     }
+
+    if (action.type === "DECREMENT") {
+        let updateditem = state.cart.map((curElem) => {
+            if (curElem.id === action.payload) {
+                let updatedQuantity = curElem.amount - 1
+                if(updatedQuantity <= 1){
+                    updatedQuantity = 1
+                }
+                return {
+                    ...curElem,
+                    amount: updatedQuantity
+                }
+            }
+            else{
+                return curElem
+            }
+        });
+        return {
+            ...state,
+            cart: updateditem
+        }
+    }
+
+    if (action.type === "INCREMENT") {
+        let updatedItems = state.cart.map((curElem) => {
+            if (curElem.id === action.payload) {
+                let updatedQuantity = curElem.amount + 1;
+                if (updatedQuantity >= curElem.max) {
+                    updatedQuantity = curElem.max;
+                }
+                return {
+                    ...curElem,
+                    amount: updatedQuantity
+                };
+            } else {
+                return curElem;
+            }
+        });
+    
+        return {
+            ...state,
+            cart: updatedItems
+        };
+    }
+
+    if (action.type === "REMOVE_ITEM") {
+        let { cart } = state
+        let updatedcart = cart.filter((curElem) => curElem.id !== action.payload)
+        return {
+            ...state,
+            cart: updatedcart
+        }
+    }
+
+   
+
+    if (action.type === "CLEAR_CART") {
+        return {
+            ...state,
+            cart: []
+        }
+    }
+
+    return state
 }
+
 export default CartReducer
