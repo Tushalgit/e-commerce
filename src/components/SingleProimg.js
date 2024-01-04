@@ -12,7 +12,7 @@ function SingleProimg({ image = [{ url: "" }] }) {
           {image &&
             image.map((current, index) => (
               <figure key={index}>
-                <img src={current.url} alt="similar-products" onClick={()=> setMainimage(current)} className=" lg:h-[100px] cursor-pointer"/>
+                <img src={current.url} alt="similar-products" onClick={() => setMainimage(current)} className=" lg:h-[100px] cursor-pointer" />
               </figure>
             ))
           }

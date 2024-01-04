@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom"
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import MenuIcon from '@mui/icons-material/Menu';
 import CancelIcon from '@mui/icons-material/Cancel';
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Usecart } from "../Context/CartContext";
 
 function Navbar() {
@@ -14,7 +14,7 @@ function Navbar() {
         setNav((prev) => !prev)
     }
 
-    const { cart } = Usecart()
+    const { total_item } = Usecart()
 
     return (
         <>
@@ -40,7 +40,7 @@ function Navbar() {
                 }>Contect</NavLink></li>
                 <li>
                     <NavLink to="/cart">
-                        <Badge color="secondary" badgeContent={cart.length && cart.length} className="text-blue-600 cursor-pointer">
+                        <Badge color="secondary" badgeContent={total_item} className="text-blue-600 cursor-pointer">
                             <ShoppingCartIcon />
                         </Badge>
                     </NavLink>

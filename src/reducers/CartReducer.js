@@ -49,7 +49,7 @@ function CartReducer(state, action) {
         let updateditem = state.cart.map((curElem) => {
             if (curElem.id === action.payload) {
                 let updatedQuantity = curElem.amount - 1
-                if(updatedQuantity <= 1){
+                if (updatedQuantity <= 1) {
                     updatedQuantity = 1
                 }
                 return {
@@ -57,7 +57,7 @@ function CartReducer(state, action) {
                     amount: updatedQuantity
                 }
             }
-            else{
+            else {
                 return curElem
             }
         });
@@ -82,7 +82,7 @@ function CartReducer(state, action) {
                 return curElem;
             }
         });
-    
+
         return {
             ...state,
             cart: updatedItems
@@ -98,12 +98,38 @@ function CartReducer(state, action) {
         }
     }
 
-   
+
 
     if (action.type === "CLEAR_CART") {
         return {
             ...state,
             cart: []
+        }
+    }
+
+    if (action.type === "CART_TOTAL_QUANTITY") {
+        let totalquantity = state.cart.reduce((acc, curElem) => {
+            let { amount } = curElem
+            acc = acc + amount
+            return acc
+        }, 0)
+
+        return {
+            ...state,
+            total_item: totalquantity
+        }
+    }
+
+    if (action.type === "CART_TOTAL_PRICE") {
+        let totalprice = state.cart.reduce((acc, curElem) => {
+            let { price, amount } = curElem
+            acc = acc + price * amount
+            return acc
+        }, 0)
+
+        return {
+            ...state,
+            total_amount: totalprice
         }
     }
 

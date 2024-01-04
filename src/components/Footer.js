@@ -15,7 +15,7 @@ function Footer() {
                             <h2 className="font-semibold capitalize text-gray-800">Ready to connect with us</h2>
                             <h3 className="font-medium capitalize text-gray-600">Talk to us</h3>
                         </div>
-                        <NavLink to="/contact">
+                        <NavLink to="/contect">
                             <Button name="Get started" />
                         </NavLink>
                     </div>

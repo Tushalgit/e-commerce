@@ -1,11 +1,8 @@
-import { UseFilterPro } from "../Context/FilterProContext"
 import FilterSection from "../components/Products/FilterSection"
 import ProductList from "../components/Products/ProductList"
 import Sort from "../components/Products/Sort"
 
 function Products() {
-
-
 
   return (
     <section className="padding-y">

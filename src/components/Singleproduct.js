@@ -16,9 +16,9 @@ const api = "https://api.pujakaitem.com/api/products";
 
 function Singleproduct() {
   const { id } = useParams()
-  const { getsingleproduct, isSingleLoading, isSingleError, singleProduct } = useProductContext();
+  const { getsingleproduct, isSingleLoading, singleProduct } = useProductContext();
 
-  const { id: alias, image, name, company, description, category, stock, stars, reviews, price } = singleProduct
+  const { id: alias, image, name, company, description, stock, stars, reviews, price } = singleProduct
 
   useEffect(() => {
     getsingleproduct(`${api}?id=${id}`)
@@ -34,22 +34,25 @@ function Singleproduct() {
       <section className="padding-y">
         <div className="max-container">
           {
-            isSingleLoading ? <ColorRing
-              visible={true}
-              height="80"
-              width="80"
-              ariaLabel="blocks-loading"
-              wrapperStyle={{ display: 'flex', justifyContent: 'center', height: '60vh', alignItems: 'center' }}
-              wrapperClass="blocks-wrapper"
-              colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
-            /> :
+            isSingleLoading ? (
+              <div className="grid place-items-center h-[50vh]">
+                <ColorRing
+                  visible={true}
+                  height="80"
+                  width="80"
+                  ariaLabel="blocks-loading"
+                  wrapperClass="blocks-wrapper"
+                  colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+                />
+              </div>
+            ) :
               <div className="grid grid-cols-2 gap-10 items-center max-md:grid-cols-1">
                 <SingleProimg image={image} />
                 <div className="flex flex-col gap-3">
                   <div className="flex flex-col gap-2">
                     <h2 className="font-semibold text-lg tracking-wide">{name}</h2>
                     <div className="flex items-center gap-2">
-                      <Star stars={stars} reviews={reviews}/>
+                      <Star stars={stars} reviews={reviews} />
                     </div>
                     <p>MRP:
                       <del className="font-semibold">
@@ -86,7 +89,7 @@ function Singleproduct() {
                     <h3>Brand: <span className="font-semibold">{company}</span></h3>
                   </div>
                   <hr className="border border-slate-300" />
-                  <AddToCard stock={stock} product={singleProduct}/>
+                  <AddToCard stock={stock} product={singleProduct} />
                 </div>
               </div>
           }
