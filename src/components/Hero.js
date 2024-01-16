@@ -1,6 +1,5 @@
 import { NavLink } from "react-router-dom"
 import Button from "./Button"
-import heroimage from "../assets/images/heroimage.jfif"
 
 function Hero({name,img}) {
   return (

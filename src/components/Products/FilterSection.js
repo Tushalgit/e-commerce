@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+
 import { UseFilterPro } from "../../Context/FilterProContext";
 
 function FilterSection() {

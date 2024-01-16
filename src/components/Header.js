@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import Navbar from "./Navbar"
-import logo from "../assets/images/logo.jpg"
+import logo from "../assets/images/logo.jfif"
 
 function Header() {
     
@@ -9,7 +9,7 @@ function Header() {
             <div className="max-container">
                 <nav className="flex items-center justify-between relative">
                     <Link to="/" className="logo">
-                        <img src={logo} alt="logo" className="w-[80px] h-15 rounded object-cover max-md:w-[60px]"/>
+                        <img src={logo} alt="logo" className="w-[70px] h-15 object-cover max-md:w-[60px] rounded-full"/>
                     </Link>
                     <Navbar />
                 </nav>

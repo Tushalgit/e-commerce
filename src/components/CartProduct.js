@@ -6,7 +6,7 @@ import { Usecart } from "../Context/CartContext"
 
 function CartProduct(prod) {
 
-    const { id, name, amount, image, max, price } = prod
+    const { id, name, amount, image, price } = prod
     const { removeitem,Increase,Decrease } = Usecart()
     // const Decrease = () => {
     //     // amount > 1 ? setAmount(amount - 1) : setAmount(1)
